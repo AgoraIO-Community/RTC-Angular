@@ -59,7 +59,32 @@
 
 将以下代码复制到 `basicEngagement.js` 文件中，在你的项目中导入 `AgoraRTC` 模块。
 
-=== test ===
+```js
+import AgoraRTC from "agora-rtc-sdk-ng";
+```
 
-> [!NOTE]
-> This is a warning, use with caution.
+将以下代码复制到 `index.html` 实现客户端用户界面：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Web SDK Video Quickstart</title>
+    <!--
+        This line is used to refer to the bundle.js file packaged by webpack. A sample webpack configuration is shown in the later step of running your app.
+        -->
+    <script src="./dist/bundle.js"></script>
+  </head>
+  <body>
+    <h2 class="left-align">Web SDK Video Quickstart</h2>
+    <div class="row">
+      <div>
+        <button type="button" id="host-join">Join as host</button>
+        <button type="button" id="audience-join">Join as audience</button>
+        <button type="button" id="leave">Leave</button>
+      </div>
+    </div>
+  </body>
+</html>
+```
