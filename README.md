@@ -195,12 +195,15 @@ options = {
 <br>
 <br>
 
-## 4. 效果
+## 4. 效果测试
 
 4.1 打开浏览器 URL `http://localhost:4200/agora-video`
 ![alt text](image-7.png)
 
-4.2 点击 Join as host 以主播角色加入频道。你还可以邀请朋友克隆 Gitee 示例项目或 Github 示例项目
-到本地，在浏览器中打开 src/index.html 文件，并输入相同的 App ID、频道名称和临时 Token。你的朋友以主播角色加入频道后，你们可以看到彼此，并听到彼此的声音；你的朋友以观众角色加入频道后，你们可以听到彼此的声音。
+4.2 点击 Join as host 按钮， 加入频道。
+
+4.3 邀请朋友点击 Join as audience 按钮， 加入同一个频道。
+
+4.4 实现效果。
 
 第 4 步完成。
