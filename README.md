@@ -14,7 +14,7 @@
 
 1.6 打开浏览器 URL `http://localhost:4200/`, 现在看到的画面应该如下：
 
-<img src="image-2.png" alt="alt text" width="500">
+<img src="./images/image-2.png" alt="alt text" width="500">
 
 第 1 步完成！ 🎉
 
@@ -26,11 +26,11 @@
 
 2.1 创建组件 `ng generate component agora-video` 后会看到如下目录：
 
-<img src="image-5.png" alt="alt text" width="500">
+<img src="./images/image-5.png" alt="alt text" width="500">
 
 2.2 安装 `npm i agora-rtc-sdk-ng`
 
-<img src="image-6.png" alt="alt text" width="500">
+<img src="./images/image-6.png" alt="alt text" width="500">
 
 2.3 拷贝如下代码并覆盖到 `agora-video.component.ts`
 
@@ -184,7 +184,7 @@ export const routes: Routes = [{ path: "agora-video", component: AgoraVideoCompo
 
 3.2 如下图所示， 实名认证后， 拷贝 APP ID 并生成临时 Token
 
-![alt text](image-3.png)
+![alt text](./images/image-3.png)
 
 3.3 复制 APP ID 和 Token 到 `agora-video.component.ts` 中：
 
@@ -207,7 +207,7 @@ options = {
 ## 效果测试
 
 打开浏览器 URL `http://localhost:4200/agora-video`
-<img src="image-7.png" alt="alt text" width="500">
+<img src="./images/image-7.png" alt="alt text" width="500">
 
 点击 Join as host 按钮， 加入频道。
 
@@ -215,7 +215,7 @@ options = {
 
 在 Console 里面看到下图 log， 测试成功。
 
-<img src="image-8.png" alt="alt text" width="500">
+<img src="./images/image-8.png" alt="alt text" width="500">
 
 <br>
 
