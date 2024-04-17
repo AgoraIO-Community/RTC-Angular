@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './video-quickstart.component.html',
-  styleUrl: './video-quickstart.component.scss'
+  styleUrl: './video-quickstart.component.scss',
 })
-export class VideoQuickstartComponent {
-
-}
+export class VideoQuickstartComponent {}

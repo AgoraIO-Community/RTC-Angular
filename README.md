@@ -1,11 +1,58 @@
-# 集成 RTC Web 到 Angular 框架
+# 从 0 到 1 在 Angular 中实现 RTC
 
 本文介绍如何开始在把 RTC JavaScript 集成到 Angular 中。
 
-<Br/>
-<Br/>
+<br />
+<br />
 
 ## 前提条件
+
+### 安装并跑起 Angular
+
+> [!Info]
+> 对于从来也没有用过 Angular 的小白来说，这下面的每一条都要截图，和 Qianze 讨论下是否需要。
+
+- 安装 [ Node.js LTS ](https://nodejs.org/en)
+- 安装 [ Angular CLI ](https://angular.io/cli) 或者直接跑命令 `npm install -g @angular/cli`
+- 本地创建项目 `ng new my-app（项目名称）`
+- 到项目目录 `cd ~/my-app`
+- 本地开跑 `ng serve`
+- 打开浏览器 URL `http://localhost:4200/`
+
+<br />
+
+### 加入 RTC SDK
+
+- 安装 `npm i agora-rtc-sdk-ng`
+
+- 创建组件 `ng generate component agora-video`
+
+```js
+// video-quickstart.component.ts
+import { Component } from "@angular/core";
+
+@Component({
+  selector: "app-video-quickstart",
+  templateUrl: "./video-quickstart.component.html",
+  styleUrls: ["./video-quickstart.component.css"],
+})
+export class VideoQuickstartComponent {
+  joinAsHost() {
+    // Add logic for joining as host
+    console.log("Joining as host...");
+  }
+
+  joinAsAudience() {
+    // Add logic for joining as audience
+    console.log("Joining as audience...");
+  }
+
+  leave() {
+    // Add logic for leaving
+    console.log("Leaving...");
+  }
+}
+```
 
 开始之前，请按照以下要求准备开发环境：
 
@@ -61,6 +108,32 @@
 
 ```js
 import AgoraRTC from "agora-rtc-sdk-ng";
+```
+
+将以下代码复制到 `index.html` 实现客户端用户界面：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Web SDK Video Quickstart</title>
+    <!--
+        This line is used to refer to the bundle.js file packaged by webpack. A sample webpack configuration is shown in the later step of running your app.
+        -->
+    <script src="./dist/bundle.js"></script>
+  </head>
+  <body>
+    <h2 class="left-align">Web SDK Video Quickstart</h2>
+    <div class="row">
+      <div>
+        <button type="button" id="host-join">Join as host</button>
+        <button type="button" id="audience-join">Join as audience</button>
+        <button type="button" id="leave">Leave</button>
+      </div>
+    </div>
+  </body>
+</html>
 ```
 
 将以下代码复制到 `index.html` 实现客户端用户界面：
