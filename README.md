@@ -1,4 +1,4 @@
-简单 4 步集成 RTC SDK
+简单 3 步集成 RTC SDK
 
 ## 1. 安装并跑起 Angular
 
@@ -14,7 +14,7 @@
 
 1.6 打开浏览器 URL `http://localhost:4200/`, 现在看到的画面应该如下：
 
-![alt text](image-2.png)
+<img src="image-2.png" alt="alt text" width="500">
 
 第 1 步完成！ 🎉
 
@@ -26,11 +26,11 @@
 
 2.1 创建组件 `ng generate component agora-video` 后会看到如下目录：
 
-![alt text](image-5.png)
+<img src="image-5.png" alt="alt text" width="500">
 
 2.2 安装 `npm i agora-rtc-sdk-ng`
 
-![alt text](image-6.png)
+<img src="image-6.png" alt="alt text" width="500">
 
 2.3 拷贝如下代码并覆盖到 `agora-video.component.ts`
 
@@ -162,7 +162,16 @@ export class AgoraVideoComponent {
 </div>
 ```
 
-2.5 第 2 步完成! 🎉
+2.6 拷贝如下代码并覆盖到 `app.routes.ts`
+
+```ts
+import { Routes } from "@angular/router";
+import { AgoraVideoComponent } from "./agora-video/agora-video.component";
+
+export const routes: Routes = [{ path: "agora-video", component: AgoraVideoComponent }];
+```
+
+第 2 步完成! 🎉
 
 <br>
 <hr>
@@ -188,24 +197,26 @@ options = {
 };
 ```
 
-3.4 第 3 步完成! 🎉
+第 3 步完成! 🎉
 
 <br>
 <hr>
 <br>
 <br>
 
-## 4. 效果测试
+## 效果测试
 
-4.1 打开浏览器 URL `http://localhost:4200/agora-video`
-![alt text](image-7.png)
+打开浏览器 URL `http://localhost:4200/agora-video`
+<img src="image-7.png" alt="alt text" width="500">
 
-4.2 点击 Join as host 按钮， 加入频道。
+点击 Join as host 按钮， 加入频道。
 
-4.3 浏览器再开一个窗口， 点击 Join as audience， 加入同一个频道。
+浏览器再开一个窗口， 点击 Join as audience， 加入同一个频道。
 
-4.4 在 Console 里面看到下图 log， 测试成功。
+在 Console 里面看到下图 log， 测试成功。
 
-![alt text](image-8.png)
+<img src="image-8.png" alt="alt text" width="500">
 
-第 4 步完成! 🎉
+<br>
+
+恭喜恭喜，集成成功！🎉🎉🎉
