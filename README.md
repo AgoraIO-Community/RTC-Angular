@@ -1,163 +1,193 @@
-# 从 0 到 1 在 Angular 中实现 RTC
+从 0 到 1 把声网 RTC 集成到最新的 Angular 项目中。
 
-本文介绍如何开始在把 RTC JavaScript 集成到 Angular 中。
+## 1. 安装并跑起 Angular
 
-<br />
-<br />
+> [!NOTE]
+> 图片看上去有点奇怪，得想个办法美化一下。
 
-## 前提条件
+1.1 安装 [ Node.js LTS ](https://nodejs.org/en)
 
-### 安装并跑起 Angular
+1.2 安装 [ Angular CLI ](https://angular.io/cli) 或者直接跑命令 `npm install -g @angular/cli`
 
-> [!Info]
-> 对于从来也没有用过 Angular 的小白来说，这下面的每一条都要截图，和 Qianze 讨论下是否需要。
+1.3 本地创建项目 `ng new my-app（项目名称）`
 
-- 安装 [ Node.js LTS ](https://nodejs.org/en)
-- 安装 [ Angular CLI ](https://angular.io/cli) 或者直接跑命令 `npm install -g @angular/cli`
-- 本地创建项目 `ng new my-app（项目名称）`
-- 到项目目录 `cd ~/my-app`
-- 本地开跑 `ng serve`
-- 打开浏览器 URL `http://localhost:4200/`
+1.4 到项目目录 `cd ~/my-app`
 
-<br />
+1.5 本地开跑 `ng serve`
 
-### 加入 RTC SDK
+1.6 打开浏览器 URL `http://localhost:4200/`, 现在看到的画面应该如下：
 
-- 安装 `npm i agora-rtc-sdk-ng`
+![alt text](image-2.png)
 
-- 创建组件 `ng generate component agora-video`
+1.7 第 1 步完成！
 
-```js
-// video-quickstart.component.ts
+<br>
+<hr>
+<br>
+<br>
+
+## 2. 加入 RTC SDK
+
+2.1 安装 `npm i agora-rtc-sdk-ng`
+
+2.2 创建组件 `ng generate component agora-video` 后会看到如下目录：
+
+![alt text](image.png)
+
+2.3 复制如下代码覆盖 `agora-video.component.ts` 后看到：
+
+```ts
 import { Component } from "@angular/core";
+import AgoraRTC from "agora-rtc-sdk-ng";
+
+interface RTC {
+  localAudioTrack: any;
+  localVideoTrack: any;
+  client: any;
+}
 
 @Component({
-  selector: "app-video-quickstart",
-  templateUrl: "./video-quickstart.component.html",
-  styleUrls: ["./video-quickstart.component.css"],
+  selector: "app-agora-video",
+  templateUrl: "./agora-video.component.html",
+  styleUrls: ["./agora-video.component.scss"],
 })
-export class VideoQuickstartComponent {
-  joinAsHost() {
-    // Add logic for joining as host
-    console.log("Joining as host...");
+export class AgoraVideoComponent {
+  rtc: RTC = {
+    localAudioTrack: null,
+    localVideoTrack: null,
+    client: null,
+  };
+
+  options = {
+    appId: "eb6b8be7752c44c0b3c9a0b7602ffdf3",
+    channel: "elliott-test",
+    token: "007eJxTYPC+fqb8tvWH09kLutr+8PXWtpgXXa2IPdz47cWR6xcftK1SYEhNMkuySEo1Nzc1SjYxSTZIMk62TDRIMjczMEpLS0kzdnKWT2sIZGR4/3YKIyMDBIL4PAyuOTmZ+SUlugU5iZUMDADnEidX",
+    uid: 123456,
+  };
+
+  async startBasicLiveStreaming() {
+    this.rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
+
+    window.onload = async () => {
+      const hostJoinButton = document.getElementById("host-join");
+      const audienceJoinButton = document.getElementById("audience-join");
+      const leaveButton = document.getElementById("leave");
+
+      if (hostJoinButton) {
+        hostJoinButton.onclick = async () => {
+          // Now you can use ClientRole from agora-rtc-sdk-ng
+          this.rtc.client.setClientRole("host");
+          await this.rtc.client.join(this.options.appId, this.options.channel, this.options.token, this.options.uid);
+          console.log("here");
+
+          this.rtc.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
+          this.rtc.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
+          await this.rtc.client.publish([this.rtc.localAudioTrack, this.rtc.localVideoTrack]);
+
+          const localPlayerContainer = document.createElement("div");
+          localPlayerContainer.id = this.options.uid.toString();
+          localPlayerContainer.textContent = "Local user " + this.options.uid;
+          localPlayerContainer.style.width = "640px";
+          localPlayerContainer.style.height = "480px";
+          document.body.append(localPlayerContainer);
+
+          this.rtc.localVideoTrack.play(localPlayerContainer);
+
+          console.log("publish success!");
+        };
+      }
+
+      if (audienceJoinButton) {
+        audienceJoinButton.onclick = async () => {
+          this.rtc.client.setClientRole("audience");
+          await this.rtc.client.join(this.options.appId, this.options.channel, this.options.token, this.options.uid);
+
+          this.rtc.client.on("user-published", async (user: any, mediaType: string) => {
+            await this.rtc.client.subscribe(user, mediaType);
+            console.log("subscribe success");
+
+            if (mediaType === "video") {
+              const remoteVideoTrack = user.videoTrack;
+              const remotePlayerContainer = document.createElement("div");
+              remotePlayerContainer.id = user.uid.toString();
+              remotePlayerContainer.textContent = "Remote user " + user.uid.toString();
+              remotePlayerContainer.style.width = "640px";
+              remotePlayerContainer.style.height = "480px";
+              document.body.append(remotePlayerContainer);
+
+              remoteVideoTrack.play(remotePlayerContainer);
+            }
+
+            if (mediaType === "audio") {
+              const remoteAudioTrack = user.audioTrack;
+              remoteAudioTrack.play();
+            }
+          });
+
+          this.rtc.client.on("user-unpublished", (user: any) => {
+            const remotePlayerContainer = document.getElementById(user.uid);
+            remotePlayerContainer && remotePlayerContainer.remove();
+          });
+        };
+      }
+
+      if (leaveButton) {
+        leaveButton.onclick = async () => {
+          this.rtc.localAudioTrack.close();
+          this.rtc.localVideoTrack.close();
+
+          this.rtc.client.remoteUsers.forEach((user: any) => {
+            const playerContainer = document.getElementById(user.uid);
+            playerContainer && playerContainer.remove();
+          });
+
+          await this.rtc.client.leave();
+        };
+      }
+    };
   }
 
-  joinAsAudience() {
-    // Add logic for joining as audience
-    console.log("Joining as audience...");
-  }
-
-  leave() {
-    // Add logic for leaving
-    console.log("Leaving...");
+  constructor() {
+    this.startBasicLiveStreaming();
   }
 }
 ```
 
-开始之前，请按照以下要求准备开发环境：
-
-- Windows 或 macOS 计算机，需满足以下要求：
-  - 下载声网 Web SDK 支持的浏览器。声网强烈推荐使用最新稳定版 Google Chrome 浏览器。
-  - 具备物理音视频采集设备。
-  - 可连接到互联网。如果你的网络环境部署了防火墙，请参考应用企业防火墙限制以正常使用声网服务。
-  - 搭载 2.2 GHz Intel 第二代 i3/i5/i7 处理器或同等性能的其他处理器。
-- 安装 Node.js 及 npm
-
-- 有效的声网账户
-  和声网项目，请参考开通服务，从声网控制台获取以下信息：
-  - App ID：声网随机生成的字符串，用于识别你的 App。
-  - 临时 Token：你的 App 客户端加入频道时会使用 Token 对用户进行鉴权。临时 Token 的有效期为 24 小时。
-  - 频道名称：用于标识频道的字符串。
-
-<Br/>
-<Br/>
-
-## 创建 Web 项目
-
-创建一个名为 agora_web_quickstart 的文件夹。一个 Web 客户端项目至少需包含以下文件：
-
-- `index.html`: 用于设计 Web 应用的用户界面。
-- `basicEngagement.js`: 通过 AgoraRTCClient 实现具体应用逻辑的代码。
-- `package.json`: 安装并管理项目依赖。你可以通过命令行进入 `agora_web_quickstart` 目录并运行 `npm init` 命令来创建 `package.json` 文件。
-
-<Br/>
-<Br/>
-
-## 集成 SDK
-
-在 `package.json` 文件中的 `dependencies` 字段中添加 `agora-rtc-sdk-ng` 和版本号：
-
-```JSON title
-{
-    "name": "agora_web_quickstart",
-    "version": "1.0.0",
-    "description": "",
-    "main": "basic.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    =="dependencies": {==
-      +"agora-rtc-sdk-ng": "latest"
-    +},
-    "author": "",
-    "license": "ISC"
-}
-```
-
-将以下代码复制到 `basicEngagement.js` 文件中，在你的项目中导入 `AgoraRTC` 模块。
-
-```js
-import AgoraRTC from "agora-rtc-sdk-ng";
-```
-
-将以下代码复制到 `index.html` 实现客户端用户界面：
+2.4 复制如下代码覆盖 `agora-video.component.html` 后：
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Web SDK Video Quickstart</title>
-    <!--
-        This line is used to refer to the bundle.js file packaged by webpack. A sample webpack configuration is shown in the later step of running your app.
-        -->
-    <script src="./dist/bundle.js"></script>
-  </head>
-  <body>
-    <h2 class="left-align">Web SDK Video Quickstart</h2>
-    <div class="row">
-      <div>
-        <button type="button" id="host-join">Join as host</button>
-        <button type="button" id="audience-join">Join as audience</button>
-        <button type="button" id="leave">Leave</button>
-      </div>
-    </div>
-  </body>
-</html>
+<!-- agora-video.component.html -->
+<div>
+  <button type="button" id="host-join">Join as host</button>
+  <button type="button" id="audience-join">Join as audience</button>
+  <button type="button" id="leave">Leave</button>
+</div>
 ```
 
-将以下代码复制到 `index.html` 实现客户端用户界面：
+2.5 第 2 步完成
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Web SDK Video Quickstart</title>
-    <!--
-        This line is used to refer to the bundle.js file packaged by webpack. A sample webpack configuration is shown in the later step of running your app.
-        -->
-    <script src="./dist/bundle.js"></script>
-  </head>
-  <body>
-    <h2 class="left-align">Web SDK Video Quickstart</h2>
-    <div class="row">
-      <div>
-        <button type="button" id="host-join">Join as host</button>
-        <button type="button" id="audience-join">Join as audience</button>
-        <button type="button" id="leave">Leave</button>
-      </div>
-    </div>
-  </body>
-</html>
+<br>
+<hr>
+<br>
+<br>
+
+## 3. 创建声网账号
+
+3.1 console.shengwang.cn 注册并登录。
+
+3.2 如下图所示， 实名认证后， 拷贝 APP ID 并生成临时 Token
+
+![alt text](image-3.png)
+
+3.3 复制 APP ID 和 Token 到 `agora-video.component.ts` 中：
+
+```ts
+options = {
+  appId: "复制到这里",
+  channel: "agora-video",
+  token: "复制到这里",
+  uid: 123456,
+};
 ```
+
+3.4 第 3 步完成

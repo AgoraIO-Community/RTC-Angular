@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import AgoraRTC from 'agora-rtc-sdk-ng';
 
-// Import ClientRole from 'agora-rtc-sdk-ng'
-import { ClientRole } from 'agora-rtc-sdk-ng';
-
 interface RTC {
   localAudioTrack: any;
   localVideoTrack: any;
