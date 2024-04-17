@@ -16,22 +16,23 @@
 
 ![alt text](image-2.png)
 
-1.7 第 1 步完成！
+第 1 步完成！
 
 <br>
 <hr>
 <br>
-<br>
 
 ## 2. 加入 RTC SDK
 
-2.1 安装 `npm i agora-rtc-sdk-ng`
+2.1 创建组件 `ng generate component agora-video` 后会看到如下目录：
 
-2.2 创建组件 `ng generate component agora-video` 后会看到如下目录：
+![alt text](image-5.png)
 
-![alt text](image.png)
+2.2 安装 `npm i agora-rtc-sdk-ng`
 
-2.3 复制如下代码覆盖 `agora-video.component.ts` 后看到：
+![alt text](image-6.png)
+
+2.3 拷贝如下代码并覆盖到 `agora-video.component.ts`
 
 ```ts
 import { Component } from "@angular/core";
@@ -56,9 +57,9 @@ export class AgoraVideoComponent {
   };
 
   options = {
-    appId: "eb6b8be7752c44c0b3c9a0b7602ffdf3",
-    channel: "elliott-test",
-    token: "007eJxTYPC+fqb8tvWH09kLutr+8PXWtpgXXa2IPdz47cWR6xcftK1SYEhNMkuySEo1Nzc1SjYxSTZIMk62TDRIMjczMEpLS0kzdnKWT2sIZGR4/3YKIyMDBIL4PAyuOTmZ+SUlugU5iZUMDADnEidX",
+    appId: "拷贝 APP ID 到这里",
+    channel: "",
+    token: "拷贝临时 token 到这里",
     uid: 123456,
   };
 
@@ -150,7 +151,7 @@ export class AgoraVideoComponent {
 }
 ```
 
-2.4 复制如下代码覆盖 `agora-video.component.html` 后：
+2.4 拷贝如下代码并覆盖 `agora-video.component.html`
 
 ```html
 <!-- agora-video.component.html -->
@@ -170,7 +171,7 @@ export class AgoraVideoComponent {
 
 ## 3. 创建声网账号
 
-3.1 console.shengwang.cn 注册并登录。
+3.1 [ console.shengwang.cn ](https://console.shengwang.cn) 注册并登录。
 
 3.2 如下图所示， 实名认证后， 拷贝 APP ID 并生成临时 Token
 
@@ -188,3 +189,16 @@ options = {
 ```
 
 3.4 第 3 步完成
+
+<br>
+<hr>
+<br>
+<br>
+
+## 4. 效果
+
+4.1 打开浏览器 URL `http://localhost:4200/agora-video`
+![alt text](image-7.png)
+
+4.2 点击 Join as host 以主播角色加入频道。你还可以邀请朋友克隆 Gitee 示例项目或 Github 示例项目
+到本地，在浏览器中打开 src/index.html 文件，并输入相同的 App ID、频道名称和临时 Token。你的朋友以主播角色加入频道后，你们可以看到彼此，并听到彼此的声音；你的朋友以观众角色加入频道后，你们可以听到彼此的声音。
