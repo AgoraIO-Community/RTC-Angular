@@ -23,7 +23,7 @@ export class AgoraVideoComponent {
     appId: 'eb6b8be7752c44c0b3c9a0b7602ffdf3',
     channel: 'elliott-test',
     token:
-      '007eJxTYPC+fqb8tvWH09kLutr+8PXWtpgXXa2IPdz47cWR6xcftK1SYEhNMkuySEo1Nzc1SjYxSTZIMk62TDRIMjczMEpLS0kzdnKWT2sIZGR4/3YKIyMDBIL4PAyuOTmZ+SUlugU5iZUMDADnEidX',
+      '007eJxTYPhy/faOFlY/Ju9o+dv+67477wla+/TeyiVBZ9Myrl9zOvRUgSE1ySzJIinV3NzUKNnEJNkgyTjZMtEgydzMwCgtLSXNuL9GPq0hkJFhJWMtEyMDBIL4PAypOTmZ+SUluiWpxSUMDABPHSVB',
     uid: 123456,
   };
 

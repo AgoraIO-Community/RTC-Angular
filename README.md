@@ -202,8 +202,10 @@ options = {
 
 4.2 点击 Join as host 按钮， 加入频道。
 
-4.3 邀请朋友点击 Join as audience 按钮， 加入同一个频道。
+4.3 浏览器再开一个窗口， 点击 Join as audience， 加入同一个频道。
 
-4.4 实现效果。
+4.4 在 Console 里面看到下图 log， 测试成功。
+
+![alt text](image-8.png)
 
 第 4 步完成。
