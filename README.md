@@ -29,9 +29,9 @@
 
 创建一个名为 agora_web_quickstart 的文件夹。一个 Web 客户端项目至少需包含以下文件：
 
-- index.html: 用于设计 Web 应用的用户界面。
-- basicEngagement.js: 通过 AgoraRTCClient 实现具体应用逻辑的代码。
-- package.json: 安装并管理项目依赖。你可以通过命令行进入 agora_web_quickstart 目录并运行 npm init 命令来创建 package.json 文件。
+- `index.html`: 用于设计 Web 应用的用户界面。
+- `basicEngagement.js`: 通过 AgoraRTCClient 实现具体应用逻辑的代码。
+- `package.json`: 安装并管理项目依赖。你可以通过命令行进入 `agora_web_quickstart` 目录并运行 `npm init` 命令来创建 `package.json` 文件。
 
 <Br/>
 <Br/>
