@@ -2,9 +2,6 @@
 
 ## 1. 安装并跑起 Angular
 
-> [!NOTE]
-> 图片看上去有点奇怪，得想个办法美化一下。
-
 1.1 安装 [ Node.js LTS ](https://nodejs.org/en)
 
 1.2 安装 [ Angular CLI ](https://angular.io/cli) 或者直接跑命令 `npm install -g @angular/cli`
