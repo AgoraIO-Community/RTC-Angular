@@ -1,12 +1,12 @@
 # Simple 3-step integration of Agora Video SDK
 
-1. Install and Run Angular
+1. **Install and Run Angular**
 
-    1. Install [Node.js LTS](https://nodejs.org/en)
+    1. Install [Node.js LTS](https://nodejs.org/en).
 
     1. Install [Angular CLI](https://angular.io/cli). 
         
-        To install from the command line, run the command `npm install -g @angular/cli`.
+        To install using `npm`, run the command `npm install -g @angular/cli`.
 
     1. To create a new project, execute `ng new my-app`. 
         
@@ -35,7 +35,7 @@
 
         <img src="./images/image-6.png" alt="alt text" width="500">
 
-    1. Overwrite the contents in `agora-video.component.ts` with the following code:
+    1. Overwrite the contents in `agora-video.component.ts` with the following:
 
         ```ts
         import { Component } from "@angular/core";
@@ -180,22 +180,20 @@
 
     1. Register and log in to [Agora Console](https://console.agora.io).
 
-    2. As shown in the figure below, after real-name authentication, copy the APP ID and generate a temporary Token
+    2. Navigate to the **Project Management** tab. Find your project and click **Configure**. Copy your APP ID, and generate a temporary Token.
 
         ![alt text](./images/image-3-en.png)
 
-    3. Copy the APP ID and Token to `agora-video.component.ts`:
+    3. Open `agora-video.component.ts` and update the APP ID and token:
 
         ```ts
         options = {
-        appId: "Copy here",
-        channel: "agora-video",
-        token: "Copy here",
-        uid: 123456,
+          appId: "Copy here",
+          channel: "agora-video",
+          token: "Copy here",
+          uid: 123456,
         };
         ```
-
-    Step 3 is complete! 🎉
 
 ## Test the code
 
@@ -209,4 +207,5 @@
 
     <img src="./images/image-8.png" alt="alt text" width="500">
 
-Congratulations, you have successfully integrated Agora Video SDK into you Angular project! 🎉🎉🎉
+Congratulations! 🎉🎉🎉
+You have successfully created your first Angular project with Agora Video SDK. 
