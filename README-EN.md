@@ -178,13 +178,13 @@
 
 1. **Create an Agora account**
 
-    1 Register and log in to [Agora Console](https://console.agora.io).
+    1. Register and log in to [Agora Console](https://console.agora.io).
 
-    2 As shown in the figure below, after real-name authentication, copy the APP ID and generate a temporary Token
+    2. As shown in the figure below, after real-name authentication, copy the APP ID and generate a temporary Token
 
         ![alt text](./images/image-3.png)
 
-    3 Copy the APP ID and Token to `agora-video.component.ts`:
+    3. Copy the APP ID and Token to `agora-video.component.ts`:
 
         ```ts
         options = {
@@ -199,12 +199,12 @@
 
 ## Test the code
 
-Open the URL `http://localhost:4200/agora-video` in your browser.
+1. Open the URL `http://localhost:4200/agora-video` in your browser.
 
-<img src="./images/image-7.png" alt="alt text" width="500">
+    <img src="./images/image-7.png" alt="alt text" width="500">
 
-Click the **Join as host** button to join the channel.
+1. Click the **Join as host** button to join the channel.
 
-Open another browser window, click **Join as audience**, and join the same channel. In the Console, you see the following log, indicating that the test is successful. <img src="./images/image-8.png" alt="alt text" width="500">
+1. Open another browser window, click **Join as audience**, and join the same channel. In the Console, you see the following log, indicating that the test is successful. <img src="./images/image-8.png" alt="alt text" width="500">
 
-Congratulations, the integration is successful! 🎉🎉🎉
+Congratulations, successfully integrated Agora Video SDK into you Angular project! 🎉🎉🎉
