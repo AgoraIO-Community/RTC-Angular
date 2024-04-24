@@ -182,7 +182,7 @@
 
     2. As shown in the figure below, after real-name authentication, copy the APP ID and generate a temporary Token
 
-        ![alt text](./images/image-3.png)
+        ![alt text](./images/image-3-en.png)
 
     3. Copy the APP ID and Token to `agora-video.component.ts`:
 
@@ -205,6 +205,8 @@
 
 1. Click the **Join as host** button to join the channel.
 
-1. Open another browser window, click **Join as audience**, and join the same channel. In the Console, you see the following log, indicating that the test is successful. <img src="./images/image-8.png" alt="alt text" width="500">
+1. Open another browser window, click **Join as audience**, and join the same channel. In the Console, you see the following log, indicating that the test is successful. 
 
-Congratulations, successfully integrated Agora Video SDK into you Angular project! 🎉🎉🎉
+    <img src="./images/image-8.png" alt="alt text" width="500">
+
+Congratulations, you have successfully integrated Agora Video SDK into you Angular project! 🎉🎉🎉
