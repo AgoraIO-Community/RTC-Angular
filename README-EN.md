@@ -1,4 +1,4 @@
-# Simple 3-step integration of Agora Video SDK
+# Integrate Agora Video SDK in 3 simple steps
 
 1. **Install and Run Angular**
 
@@ -203,9 +203,11 @@
 
 1. Click the **Join as host** button to join the channel.
 
-1. Open another browser window, click **Join as audience**, and join the same channel. In the Console, you see the following log, indicating that the test is successful. 
+1. Open another browser window, click **Join as audience**, and join the same channel. 
+
+    In the Console, you see the following log, indicating that the test is successful. 
 
     <img src="./images/image-8.png" alt="alt text" width="500">
 
-Congratulations! 🎉🎉🎉
+Congratulations! 🎉🎉🎉<br/>
 You have successfully created your first Angular project with Agora Video SDK. 
