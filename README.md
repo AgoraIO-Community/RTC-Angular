@@ -11,15 +11,12 @@
   <a href="https://www.agora.io/en/join-slack/">
     <img src="https://img.shields.io/badge/slack-@RTE%20Dev-blue.svg?logo=slack">
   </a>
-  <a href="https://www.agora.io/en">
-<img src="https://img.shields.io/static/v1?label=RTE&message=Real-Time Engagement&color=yellow" alt="Agora RTE" />
-</a>
-<a href="https://www.agora.io/en/products/video-call/">
-<img src="https://img.shields.io/static/v1?label=RTC&message=Video Call SDK&color=orange" alt="Agora RTC" />
-</a>
-<a href="https://www.agora.io/en/products/chat/">
-<img src="https://img.shields.io/static/v1?label=RTM&message=Agora Chat&color=success" alt="Agora Chat"/>
-</a>
+  <a href="https://www.agora.io/en"><img src="https://img.shields.io/static/v1?label=RTE&message=Real-Time Engagement&color=yellow" alt="Agora RTE" />
+  </a>
+  <a href="https://www.agora.io/en/products/video-call/"><img src="https://img.shields.io/static/v1?label=RTC&message=Video Call SDK&color=orange" alt="Agora RTC" />
+  </a>
+  <a href="https://www.agora.io/en/products/chat/"><img src="https://img.shields.io/static/v1?label=RTM&message=Agora Chat&color=success" alt="Agora Chat"/>
+  </a>
 </p>
 
 <br />
