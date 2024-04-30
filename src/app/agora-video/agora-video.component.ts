@@ -20,10 +20,9 @@ export class AgoraVideoComponent {
   };
 
   options = {
-    appId: 'eb6b8be7752c44c0b3c9a0b7602ffdf3',
-    channel: 'elliott-test',
-    token:
-      '007eJxTYPhy/faOFlY/Ju9o+dv+67477wla+/TeyiVBZ9Myrl9zOvRUgSE1ySzJIinV3NzUKNnEJNkgyTjZMtEgydzMwCgtLSXNuL9GPq0hkJFhJWMtEyMDBIL4PAypOTmZ+SUluiWpxSUMDABPHSVB',
+    appId: '',
+    channel: 'Your Channel Name',
+    token: '',
     uid: 123456,
   };
 
