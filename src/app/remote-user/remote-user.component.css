@@ -1,0 +1,6 @@
+.remote-video {
+  width: 25vw;
+  min-width: 312px;
+  flex: 1 1 20%;
+  aspect-ratio: 1.33;
+}

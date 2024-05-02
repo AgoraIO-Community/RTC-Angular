@@ -1,0 +1,22 @@
+<div #modalOverlay id="overlay" class="modal">
+  <div id="modal-container">
+    <div id="modal-header">
+      <div id="title">
+        <h1>Join Channel</h1>
+      </div>
+    </div>
+    <form #joinChannelForm="ngForm" id="join-channel-form" (ngSubmit)="onSubmit(channelName.value, agoraToken.value)">
+      <div id="modal-body">
+        <div class="form-group">
+          <label for="form-channel-name">Channel Name</label>
+          <input ngModel name="channelName" #channelName="ngModel" type="text" id="form-channel-name" class="form-control">
+          <label for="form-agora-token">Token</label>
+          <input ngModel name="agoraToken" #agoraToken="ngModel" type="text" id="form-agora-token" class="form-control">
+        </div>
+        <div id="modal-footer">
+          <button type="submit" id="join-channel-btn">Join Channel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
