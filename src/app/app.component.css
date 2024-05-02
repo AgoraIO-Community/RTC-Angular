@@ -1,0 +1,16 @@
+/* Video Call container */
+#container {
+  width: 100vw;
+  height: 100vh;
+}
+
+main {
+  /* width: 100vw; */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  box-sizing: inherit;
+  position: relative;
+}
