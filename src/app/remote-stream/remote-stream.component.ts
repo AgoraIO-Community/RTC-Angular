@@ -39,7 +39,7 @@ export class RemoteStreamComponent implements OnInit, OnDestroy {
       user.audioTrack?.play()
     } else if (mediaType === 'video') {
       const uid = user.uid
-      // create <div/> for remote user and add to DOM
+      // create a remote user component for each new remote user and add to DOM
       const remoteUserComponentRef: ComponentRef<RemoteUserComponent> = this.remoteVideoContainer.createComponent(RemoteUserComponent)
       remoteUserComponentRef.instance.uid = uid
       remoteUserComponentRef.instance.onReady = (remoteUserDiv) => {

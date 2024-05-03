@@ -16,7 +16,7 @@ export class LocalStreamComponent implements AfterViewInit {
   @Output() leaveChannel = new EventEmitter<void>();
   private localMicTrack!: ILocalTrack;
   private localVideoTrack!: ILocalTrack;
-  // private localScreenTracks?: ILocalTrack[];
+  private localScreenTracks?: ILocalTrack[];
 
   private client: IAgoraRTCClient;
 
