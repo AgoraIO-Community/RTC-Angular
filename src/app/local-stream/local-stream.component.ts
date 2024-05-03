@@ -28,6 +28,12 @@ export class LocalStreamComponent implements AfterViewInit {
     video: false,
     screen: false,
   }
+  // Mapping to simplify getting/setting track-state
+  private trackNameMapping: { [key:string]: 'audio' | 'video' | 'screen' } = {
+    audio: 'audio',
+    video: 'video',
+    screen: 'screen',
+  }
 
   constructor(private agoraService: AgoraService) {
     this.client = this.agoraService.getClient()
@@ -52,63 +58,12 @@ export class LocalStreamComponent implements AfterViewInit {
     this.handleLeaveChannel()
   }
 
-  getTrackState(trackName: string): boolean | undefined {
-    switch (trackName) {
-      case 'mic':
-        return this.localTracksActive.audio
-      case 'video':
-        return this.localTracksActive.video
-      case 'screen':
-        return this.localTracksActive.screen
-      default:
-        console.log(`Get Track State Error: Unknown trackName ${trackName}`)
-        return
-    }
-  }
-
-  setTrackState(trackName: string, state: boolean): void {
-    switch (trackName) {
-      case 'mic':
-        this.localTracksActive.audio = state
-        break;
-      case 'video':
-        this.localTracksActive.video = state
-        break;
-      case 'screen':
-        this.localTracksActive.screen = state
-        break;
-      default:
-        console.log(`Set Track State Error: Unknown trackName ${trackName}`)
-    }
-  }
-
   async publishTracks() {
     await this.client.publish([ this.localMicTrack, this.localVideoTrack ])
   }
 
   async unpublishTracks() {
     await this.client.publish([ this.localMicTrack, this.localVideoTrack ])
-  }
-
-  async muteTrack(trackName: string, enabled: boolean): Promise<boolean> {
-    const track = trackName === 'mic' ? this.localMicTrack : this.localVideoTrack;
-    await track.setEnabled(enabled);
-    this.setTrackState(trackName, enabled)
-    return enabled;
-  }
-
-  async startScreenShare(): Promise<boolean> {
-    // TODO: add start screenshare
-    // Listen for screen share ended event (from browser ui button)
-    // this.localScreenTracks[0]?.on("track-ended", () => {
-    //   this.stopScreenShare()
-    // })    
-    return true;
-  }
-
-  async stopScreenShare(): Promise<boolean> {
-    // TODO: add stop screenshare
-    return false;
   }
 
   async handleLeaveChannel(): Promise<void> {
@@ -121,6 +76,45 @@ export class LocalStreamComponent implements AfterViewInit {
       await this.agoraService.leaveChannel()
     }
     this.leaveChannel.emit()
+  }
+
+  async muteTrack(trackName: string, enabled: boolean): Promise<boolean> {
+    const track = trackName === 'mic' ? this.localMicTrack : this.localVideoTrack;
+    await track.setEnabled(enabled);
+    this.setTrackState(trackName, enabled)
+    return enabled;
+  }
+
+  async startScreenShare(): Promise<boolean> {
+    // TODO: add start screen share
+    // Listen for screen share ended event (from browser ui button)
+    // this.localScreenTracks[0]?.on("track-ended", () => {
+    //   this.stopScreenShare()
+    // })    
+    return true;
+  }
+
+  async stopScreenShare(): Promise<boolean> {
+    // TODO: add stop screenshare
+    return false;
+  }
+
+  getTrackState(trackName: string): boolean | undefined {
+    const key = this.trackNameMapping[trackName]
+    if (key) {
+      return this.localTracksActive[key]
+    }
+    console.log(`Get Track State Error: Unknown trackName: ${trackName}`)
+    return
+  }
+
+  setTrackState(trackName: string, state: boolean): void {
+    const key = this.trackNameMapping[trackName]
+    if (key) {
+      this.localTracksActive[key] = state
+    }
+    console.log(`Set Track State Error: Unknown trackName: ${trackName}`)
+    return
   }
 
 }
