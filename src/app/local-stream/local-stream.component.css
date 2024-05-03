@@ -1,0 +1,18 @@
+#local-video-container { 
+  position: absolute;
+  float: right;
+  bottom: 310px;
+  right: 10px;
+  width: 360px;
+}
+
+#local-video {
+  position: absolute;
+  z-index: 1;
+  width: 360px;
+  height: 270px;
+}
+
+#local-video div {
+  border-radius: 10px;
+}

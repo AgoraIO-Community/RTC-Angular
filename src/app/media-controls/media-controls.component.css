@@ -1,0 +1,35 @@
+/* media controls */
+#local-media-controls {
+  /* width: 100vw; */
+  position: relative;
+  /* bottom: 0; */
+  background: #fff;
+  padding: 10px 0;
+}
+
+#local-media-controls button {
+  margin: 0 5px;
+}
+
+.media-active {
+  color: #fff;
+  background-color: #1a1a1a;
+}
+
+/* only show hover if button not focused */
+.media-active:hover:not(:focus) {
+  background-color: #FFF;
+  color: #cd3333;
+  border: 1px solid #cd3333;
+}
+
+.muted{
+  background: #b62b2b;
+}
+
+/* only show hover if button not focused */
+.muted:hover:not(:focus) {
+  background-color: #b62b2b73;
+  color: #1a1a1a;
+  border: 1px solid #1a1a1a;
+}
