@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import AgoraRTC, { ILocalTrack, IAgoraRTCClient } from 'agora-rtc-sdk-ng';
+import { environment } from '../environments/environments';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
@@ -7,7 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AgoraService {
   private client: IAgoraRTCClient;
-  private appId = ''
+  private appId = environment.AgoraAppId
 
   private channelJoinedSource = new BehaviorSubject<boolean>(false);
   channelJoined$ = this.channelJoinedSource.asObservable();
