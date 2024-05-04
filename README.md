@@ -9,13 +9,14 @@
   </p>
 </div>
 
-# RTC-Angular with Agora Live Video 
+# RTC-Angular with Agora Live Video
 
 Typescript implmentation of the Agora Video SDK for Web v4.20 using the Angular framework
 
-The [Guide.md](Guide.md) contains a walk-through of the project, including setup and code.
+The [Guide.md](GUIDE.md) contains a walk-through of the project, including setup and code.
 
 ## Demo
+
 Test the build: []()
 
 ## Setup
@@ -24,9 +25,10 @@ Test the build: []()
 1. Add [Agora API Key](#how-to-aquire-an-agora-appid) to the [`environments.ts`]() file
 
 ## Test in Dev mode
+
 1. Follow steps in setup
 1. Open the terminal and navigate to repo folder
-1. Use this command to run dev mode with local webserver: 
+1. Use this command to run dev mode with local webserver:
 
    ```bash
    ng serve
@@ -36,11 +38,11 @@ Test the build: []()
 
 1. Register and log in to [Agora Console](https://console.agora.io).
 
-1. Navigate to the **Project Management** tab. 
+1. Navigate to the **Project Management** tab.
 
-1. Find your project and click **Configure**. 
+1. Find your project and click **Configure**.
 
-1. Copy your APP ID, 
+1. Copy your APP ID,
 
 1. Scroll down and generate a temporary Token (if security is enable).
 
