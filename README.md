@@ -22,7 +22,7 @@ Test the build: []()
 ## Setup
 
 1. Clone the repo
-1. Add [Agora API Key](#how-to-aquire-an-agora-appid) to the [`environments.ts`]() file
+1. Add [Agora API Key](#how-to-aquire-an-agora-appid) to the [`environments.ts`](src/environments/environments.ts) file
 
 ## Test in Dev mode
 
